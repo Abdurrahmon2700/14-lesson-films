@@ -2,6 +2,13 @@ body {
 background-image: url(img/bcg-img.jpg);
 }
 
+form {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
 img {
   display: flex;
   justify-content: center;
