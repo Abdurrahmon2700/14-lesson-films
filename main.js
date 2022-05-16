@@ -1,16 +1,12 @@
-// Elementlarni chaqirib olish
+// Elemntlarni chaqirish
 let elInfoList = $("ul");
 let elForm = $("form");
 let elInput = $("input");
 
-
-let elInputVal = elInput.value.trim();
-let searchRegex = new RegExp(elInputVal, "gi");
-
-// qidiruvdan topilgan filmlarni yig;ib boruvchi array
+// qidiruv natijasini o'zida jamlovchi array
 let filmName = [];
 
-// API ni fetch qilish 
+// objectdan kinolarni fetch qilish
 kinolar.forEach(function (kino) {
 
   let newLi = elCreateElement("li", "card col-3 col-sm-3", "");
@@ -21,18 +17,22 @@ kinolar.forEach(function (kino) {
 
   newLi.append(titleMovie, movieJanr, movieCast, movieYear)
   elInfoList.append(newLi)
+
 });
 
-// search qilish jarayoni
+// qiriduv jarayoni
 elForm.addEventListener('submit', (e) => {
   e.preventDefault();
+
+  let elInputVal = elInput.value.trim();
+  let searchRegex = new RegExp(elInputVal, "gi");
 
   kinolar.forEach(function (kino) {
 
     if (kino.title.match(searchRegex)) {
+
       filmName.push(kino);
       elInfoList.innerHTML = null;
-
       filmName.forEach(function (film) {
 
         elInfoList.innerHTML = null;
@@ -41,6 +41,7 @@ elForm.addEventListener('submit', (e) => {
         let movieJanr = elCreateElement("p", "", `Genres:  ${kino.genres}`);
         let movieCast = elCreateElement("p", "", `Cast:  ${kino.cast}`);
         let movieYear = elCreateElement("p", "", `Year:  ${kino.year}`);
+
 
         newLi.append(titleMovie, movieJanr, movieCast, movieYear)
         elInfoList.append(newLi)
